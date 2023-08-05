@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Attendance Form</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
+  <h1>Attendance</h1>
+
+  {% for attendance in attendances %}
+    <p>{{ attendance.employee.user.first_name }} - Date: {{ attendance.date }}</p>
+  {% empty %}
+    <p>No attendance records available.</p>
+  {% endfor %}
+{% endblock %}
